@@ -1,0 +1,15 @@
+services:
+  web:
+    build:
+      context: .
+      target: dev
+    container_name: express-dev
+    ports:
+      - "3000:3000"        # host:container
+    environment:
+      - PORT=3000
+      - HOST=0.0.0.0
+    volumes:
+      - .:/app             # monta el código local
+      - /app/node_modules  # evita sobreescribir node_modules del contenedor
+    command: npm run dev
